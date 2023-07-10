@@ -1,7 +1,7 @@
-# oracle-cloud-terraform
+# Terraform for Oracle Cloud Free Tier
 Terraform project to create the VMs allowed by the Oracle Cloud Free Tier + Ansible post deployment automation
 
-This repo will deploy two **VM.Standard.E2.1.Micro** instances allowed by the Oracle free tier.
+This repo will deploy two **VM.Standard.E2.1.Micro** instances allowed by the Oracle free tier. (no need to have billing account)
 
 # Steps to deploy
 ## Step 1. Create API key
