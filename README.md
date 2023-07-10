@@ -7,7 +7,7 @@ This repo will deploy two **VM.Standard.E2.1.Micro** instances allowed by the Or
 ## Step 1. Create API key
 ```sh
 # if you want the password protected key
-openssl genrsa -out ~/.ssh/not_ssh_oci_api_key.pem aes128 2048                    
+openssl genrsa -out ~/.ssh/not_ssh_oci_api_key.pem -aes128 2048                    
 # if you want the non-password protected key
 #openssl genrsa -out ~/.ssh/not_ssh_oci_api_key.pem 2048
 chmod go-rwx ~/.ssh/not_ssh_oci_api_key.pem
