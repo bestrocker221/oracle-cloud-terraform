@@ -11,7 +11,7 @@ openssl genrsa -out ~/.ssh/not_ssh_oci_api_key.pem 2048
 # if you want the non-password protected key
 #openssl genrsa -out ~/.ssh/not_ssh_oci_api_key.pem 2048
 chmod go-rwx ~/.ssh/not_ssh_oci_api_key.pem
-openssl rsa -pubout -in /home/bsod/.ssh/not_ssh_oci_api_key.pem -out /home/bsod/.ssh/not_ssh_oci_api_key_public.pem    
+openssl rsa -pubout -in ~/.ssh/not_ssh_oci_api_key.pem -out ~/.ssh/not_ssh_oci_api_key_public.pem    
 ```
 Or follow here: https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm
 
