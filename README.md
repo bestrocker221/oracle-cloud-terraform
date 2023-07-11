@@ -62,6 +62,13 @@ terraform apply
 
 At the end, terraform will generate an ansible inventory file ready for use in `./ansible`
 
+## Want to store terraform state on the cloud bucket?
+Uncomment `state.tf.bak` to `state.tf` and follow instructions within to enable proper access.
+
+Copy the secret key, then click on the generated secret and copy the key id. Create a profile then.
+
+You need to generate "customer secret keys" from the portal and create a "[oracle]" profile in ~/.aws/credentials OR use env variables.
+
 
 ## Note
 20GB of storage buckets are free.
