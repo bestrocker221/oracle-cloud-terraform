@@ -9,7 +9,7 @@ output "name-of-first-availability-domain" {
 
 output "vm_list" {
   value = [
-    for instance in [oci_core_instance.instance1, oci_core_instance.instance2] : {
+    for instance in [oci_core_instance.instance1, oci_core_instance.instance2, oci_core_instance.instance3] : {
       hostname   = instance.display_name
       ip_address = instance.public_ip
       user       = "ubuntu"
@@ -24,5 +24,6 @@ resource "local_file" "ansible_inventory" {
     [oracl-inst]
     ${oci_core_instance.instance1.display_name} ansible_host=${oci_core_instance.instance1.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${local.ssh_pubkey_path}
     ${oci_core_instance.instance2.display_name} ansible_host=${oci_core_instance.instance2.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${local.ssh_pubkey_path}
+    ${oci_core_instance.instance3.display_name} ansible_host=${oci_core_instance.instance3.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${local.ssh_pubkey_path}
   EOT
 }

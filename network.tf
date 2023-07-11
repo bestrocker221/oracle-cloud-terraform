@@ -73,7 +73,7 @@ resource "oci_core_network_security_group" "my_security_group_ssh" {
 }
 
 
-resource "oci_core_network_security_group" "wg_vpn" {
+resource "oci_core_network_security_group" "my_security_group_wg_vpn" {
   compartment_id = local.availability_domain
   display_name   = "my-security-group-wg"
   freeform_tags = {
@@ -120,7 +120,7 @@ resource "oci_core_network_security_group_security_rule" "wg_security_group_rule
   #destination = <<Optional value not found in discovery>>
   destination_type          = ""
   direction                 = "INGRESS"
-  network_security_group_id = oci_core_network_security_group.wg_vpn.id
+  network_security_group_id = oci_core_network_security_group.my_security_group_wg_vpn.id
   protocol                  = "17"
   source                    = "0.0.0.0/0"
   source_type               = "CIDR_BLOCK"
