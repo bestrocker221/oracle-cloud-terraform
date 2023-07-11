@@ -6,7 +6,7 @@ This repo will deploy:
 - default port 22 open
 - optional security groups for 443, wireguard
 - two **VM.Standard.E2.1.Micro** instances allowed by the Oracle free tier. (no need to have billing account)
-- one **VM.Standard.A1.Flex** with 24GB RAM, 4 OCPUs
+- one **VM.Standard.A1.Flex** with 24GB RAM, 4 OCPUs allowed by the Oracle free tier. 
 
 All you need is an empty account.
 
