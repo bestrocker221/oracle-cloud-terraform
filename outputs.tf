@@ -16,3 +16,13 @@ output "vm_list" {
     }
   ]
 }
+
+
+resource "local_file" "ansible_inventory" {
+  filename = "ansible/inventory.ini"
+  content  = <<-EOT
+    [oracl-inst]
+    ${oci_core_instance.instance1.display_name} ansible_host=${oci_core_instance.instance1.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${local.ssh_pubkey_path}
+    ${oci_core_instance.instance2.display_name} ansible_host=${oci_core_instance.instance2.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${local.ssh_pubkey_path}
+  EOT
+}
