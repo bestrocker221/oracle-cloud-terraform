@@ -41,13 +41,12 @@ resource "oci_core_instance" "instance2" {
 
   create_vnic_details {
     assign_public_ip = true
-    subnet_id        = local.subnet_ocid
+    subnet_id        = oci_core_subnet.main_subnet.id
+    # Security group here to allow incoming connections
+    nsg_ids = [oci_core_network_security_group.my_security_group_http.id, ]
   }
 }
 
-data "oci_core_vcns" "main_vcns" {
-  compartment_id = local.availability_domain
-}
 
 resource "oci_core_instance" "instance1" {
   availability_domain = data.oci_identity_availability_domains.ads.availability_domains[0].name
@@ -71,30 +70,9 @@ resource "oci_core_instance" "instance1" {
 
   create_vnic_details {
     assign_public_ip = true
-    subnet_id        = local.subnet_ocid
+    subnet_id        = oci_core_subnet.main_subnet.id
+    # Security group here to allow incoming connections
+    nsg_ids = [oci_core_network_security_group.my_security_group_http.id, ]
   }
 }
 
-resource "local_file" "ansible_inventory" {
-  filename = "ansible/inventory.ini"
-  content  = <<-EOT
-    [oracl-inst]
-    ${oci_core_instance.instance1.display_name} ansible_host=${oci_core_instance.instance1.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${local.ssh_pubkey_path}
-    ${oci_core_instance.instance2.display_name} ansible_host=${oci_core_instance.instance2.public_ip} ansible_user=ubuntu ansible_ssh_private_key_file=${local.ssh_pubkey_path}
-  EOT
-}
-
-#resource "oci_core_security_list" "ssh_security_group" {
-#  compartment_id = local.availability_domain
-#  vcn_id         = data.oci_core_vcns.main_vcns.virtual_networks[0].id
-#  display_name   = "ssh_security_group"
-
-#  ingress_security_rules {
-#    protocol = "6"         # TCP
-#    source   = "0.0.0.0/0" # Allow access from any IP address
-#    tcp_options {
-#      min = 22 # SSH port
-#      max = 22 # SSH port
-#    }
-#  }
-#}
