@@ -2,6 +2,9 @@
 output "name-of-first-availability-domain" {
   value = data.oci_identity_availability_domains.ads.availability_domains[0]
 }
+output "objectstorage-namesace" {
+  value = data.oci_objectstorage_namespace.state_namespace
+}
 
 #output "vcn_id" {
 #  value = data.oci_core_vcns.main_vcns

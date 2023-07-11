@@ -62,6 +62,10 @@ terraform apply
 
 At the end, terraform will generate an ansible inventory file ready for use in `./ansible`
 
+
+## Note
+20GB of storage buckets are free.
+
 ## Post deployment?
 `cd ansible && ansible-playbook playbook.yml`
 
