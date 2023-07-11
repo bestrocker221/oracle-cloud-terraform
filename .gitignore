@@ -4,3 +4,4 @@ terraform.*
 variables.tf
 ansible/inventory.ini
 export/
+mystate.tf

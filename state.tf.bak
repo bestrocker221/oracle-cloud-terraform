@@ -1,0 +1,27 @@
+data "oci_objectstorage_namespace" "state_namespace" {
+  compartment_id = local.availability_domain
+}
+
+resource "oci_objectstorage_bucket" "tf_state_bucket" {
+
+  compartment_id = local.availability_domain
+  name           = "tf_state_bucket"
+  namespace      = data.oci_objectstorage_namespace.state_namespace.namespace
+
+  object_events_enabled = true
+  versioning            = "Enabled"
+}
+
+# need to generate "customer secret keys" from the portal and create a "[oracle]" profile in ~/.aws/credentials OR use env variables 
+# TODO change vars below
+terraform {
+  backend "s3" {
+    profile                     = "oracle"
+    bucket                      = "tf_state_bucket"
+    key                         = "infra/terraform.tfstate"
+    region                      = "<CHANGEME>"
+    endpoint                    = "https://<CHANGEME>.compat.objectstorage.eu-stockholm-1.oraclecloud.com" # Replace with the OCI Object Storage endpoint for your region (from output)
+    skip_region_validation      = true
+    skip_credentials_validation = true
+  }
+}
