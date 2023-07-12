@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+  hello-world:
+    image: alpine:latest
+    command: sh -c "echo 'Hello, world!' && sleep 600"
